@@ -26,6 +26,63 @@ namespace TcpNetFramework
             return Environment.MachineName;
         }
     }
+
+    public class Print
+    {
+        public static void Green(string message, bool skipNewLine = false)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            PrintCore(message, skipNewLine);
+        }
+
+        public static void Red(string message, bool skipNewLine = false)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            PrintCore(message, skipNewLine);
+        }
+
+        public static void Yellow(string message, bool skipNewLine = false)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            PrintCore(message, skipNewLine);
+        }
+
+        public static void White(string message, bool skipNewLine = false)
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+            PrintCore(message, skipNewLine);
+        }
+
+        public static void Cyan(string message, bool skipNewLine = false)
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            PrintCore(message, skipNewLine);
+        }
+
+        public static void Blue(string message, bool skipNewLine = false)
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            PrintCore(message, skipNewLine);
+        }
+
+        public static void DarkGray(string message, bool skipNewLine = false)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            PrintCore(message, skipNewLine);
+        }
+
+        private static void PrintCore(string message, bool skipNewLine)
+        {
+            if (skipNewLine)
+            {
+                Console.Write(message);
+            }
+            else
+            {
+                Console.WriteLine(message);
+            }
+        }
+    }
 }
 
 
