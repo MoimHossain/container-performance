@@ -25,6 +25,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mmf", "Mmf", "{E7EA834C-4CD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MmfIpc", "Mmf\MmfIpc\MmfIpc.csproj", "{40124F8D-9741-47C1-B653-60468078BE76}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IPC-Unix", "IPC-Unix", "{F8877F88-4430-46AC-87E1-680E5A07FFEF}"
+	ProjectSection(SolutionItems) = preProject
+		IPC-Unix\Dockerfile = IPC-Unix\Dockerfile
+		IPC-Unix\program.c = IPC-Unix\program.c
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
