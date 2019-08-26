@@ -29,6 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IPC-Unix", "IPC-Unix", "{F8
 	ProjectSection(SolutionItems) = preProject
 		IPC-Unix\Dockerfile = IPC-Unix\Dockerfile
 		IPC-Unix\program.c = IPC-Unix\program.c
+		IPC-Unix\Readme.md = IPC-Unix\Readme.md
 	EndProjectSection
 EndProject
 Global
