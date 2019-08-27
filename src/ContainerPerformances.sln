@@ -32,6 +32,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IPC-Unix", "IPC-Unix", "{F8
 		IPC-Unix\Readme.md = IPC-Unix\Readme.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnixDomainSocket", "UnixDomainSocket", "{30880BA0-8CBD-4941-AAA4-404A87655564}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnixDomainSocket.Sample", "UnixDomainSocket\UnixDomainSocket.Sample\UnixDomainSocket.Sample.csproj", "{382EADE9-D47D-4626-87F1-0E214052A2B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +58,10 @@ Global
 		{40124F8D-9741-47C1-B653-60468078BE76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40124F8D-9741-47C1-B653-60468078BE76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40124F8D-9741-47C1-B653-60468078BE76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{382EADE9-D47D-4626-87F1-0E214052A2B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{382EADE9-D47D-4626-87F1-0E214052A2B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{382EADE9-D47D-4626-87F1-0E214052A2B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{382EADE9-D47D-4626-87F1-0E214052A2B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,6 +71,7 @@ Global
 		{2A02878C-F20B-4BE9-91D8-A0A4A4F1F978} = {D6E973E3-4ED4-4F5D-9BD3-EEAFC14760C6}
 		{9EEB101F-A8A6-4364-ADD3-A5D4CB00262E} = {C7403C9C-04A9-4F4C-9BB7-A5717AFFFEE4}
 		{40124F8D-9741-47C1-B653-60468078BE76} = {E7EA834C-4CDA-4D48-B2AA-A542229E147C}
+		{382EADE9-D47D-4626-87F1-0E214052A2B7} = {30880BA0-8CBD-4941-AAA4-404A87655564}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {96540971-45AC-4D4D-A93B-D16650082107}
