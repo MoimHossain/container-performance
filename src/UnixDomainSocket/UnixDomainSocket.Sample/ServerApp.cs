@@ -23,10 +23,13 @@ namespace UnixDomainSocket.Sample
                  // the following is important, otherwise domain sockets will be unavailable
                  .UseLibuv()
                  // tell Kestrel to create and listen on a domain socket in /tmp
-                 .UseKestrel(options => { options.ListenUnixSocket(Constants.SOCKET_NAME, socketoptions=> 
+                 .UseKestrel(options =>
                  {
-                     socketoptions.NoDelay = true;
-                 }); })
+                     options.ListenUnixSocket(Constants.SOCKET_NAME, socketoptions =>
+                        {
+                            socketoptions.NoDelay = true;
+                        });
+                 })
                  .UseStartup<Startup>();
     }
 }

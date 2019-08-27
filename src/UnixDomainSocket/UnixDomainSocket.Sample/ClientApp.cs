@@ -18,13 +18,18 @@ namespace UnixDomainSocket.Sample
                 var unixSocket = Constants.SOCKET_NAME;
                 var socket = new Socket(AddressFamily.Unix, SocketType.Stream, ProtocolType.IP);
                 var unixEp = new UnixEndPoint(unixSocket);
-                socket.NoDelay = true;
+                //socket.NoDelay = true;
                 socket.Connect(unixEp);
 
-                socket.SendBufferSize = payload.Length;
-                var signal = socket.Send(payload, SocketFlags.None);
-                Print.Yellow($"Response from server: {signal}");
-
+                for (var i = 0; i < 3; ++i)
+                {
+                    
+                    socket.SendBufferSize = payload.Length;
+                    var signal = socket.Send(payload, SocketFlags.None);
+                    
+                    Print.Yellow($"Response from server: {signal}");
+                }
+                socket.Close();
                 Console.ReadKey();
             }
             catch (Exception ex)
