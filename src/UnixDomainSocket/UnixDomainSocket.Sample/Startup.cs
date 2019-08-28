@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace UnixDomainSocket.Sample
@@ -26,38 +27,24 @@ namespace UnixDomainSocket.Sample
         {
             services.Configure<CookiePolicyOptions>(options =>
             {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
-
-            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
+            app.Run(async context =>
             {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-                //app.UseHsts();
-            }
-
-            ////app.UseHttpsRedirection();
-            //app.UseStaticFiles();
-            //app.UseCookiePolicy();
-
-            //app.UseMvc(routes =>
-            //{
-            //    routes.MapRoute(
-            //        name: "default",
-            //        template: "{controller=Home}/{action=Index}/{id?}");
-            //});
+                using(var mem = new MemoryStream())
+                {
+                    await context.Request.Body.CopyToAsync(mem);
+                    Print.Yellow("Body Length: ", true);
+                    Print.Cyan(mem.ToArray().Length.ToString());
+                }
+                await context.Response.WriteAsync("Hello, World!");
+            });
         }
     }
 }
