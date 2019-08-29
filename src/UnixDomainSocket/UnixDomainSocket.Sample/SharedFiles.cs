@@ -32,41 +32,77 @@ namespace UnixDomainSocket.Sample
             return measures;
         }
 
-        private static void ReportMeasures(long[] measures, string caption)
+        public static void ReportMeasures(long[] measures, string caption)
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("======================================================================");
-            Console.WriteLine(caption);
-            Console.WriteLine("======================================================================");
-            PrintCaption("Mean:");
-            PrintMeasureUnit(System.Convert.ToInt64(measures.Average()), measures.Average());
+            Print.White("   --------------------------------------------------------------------");
+            Print.Cyan($"       {caption}");
 
-            PrintCaption("Fastest:");
+
+            var pct = default(double);
+
+            Print.White("   +------------------------------------------------------------------+");
+            Print.White("   +   Percentile(%)   |                         Latency              +");
+            Print.White("   +------------------------------------------------------------------+");
+            for (var i = 10; i <= 90; i += 10)
+            {
+                PrintCaption($"       * {100 - i}th           ");
+                pct = Percentile(measures, (double)i / 100);
+                PrintMeasureUnit((long)pct, pct);
+                Print.White(string.Empty);
+            }
+
+            Print.White("   +------------------------------------------------------------------+");
+            Print.White("   +   Other           |                         Latency              +");
+            Print.White("   +------------------------------------------------------------------+");
+            PrintCaption($"       * Outlier");
+            pct = Percentile(measures, 1);
+            PrintMeasureUnit((long)pct, pct);
+            Print.White(string.Empty);
+
+            PrintCaption("       * Mean:");
+            PrintMeasureUnit(System.Convert.ToInt64(measures.Average()), measures.Average());
+            Print.White(string.Empty);
+
+            PrintCaption("       * Fastest:");
             PrintMeasureUnit(System.Convert.ToInt64(measures.Min()), 0);
+            Print.White(string.Empty);
 
             Console.ForegroundColor = ConsoleColor.White;
-            PrintCaption("Slowest:");
+            PrintCaption("       * Slowest:");
             PrintMeasureUnit(System.Convert.ToInt64(measures.Max()), 0);
-
-            PrintCaption("Total:");
-            PrintMeasureUnit(System.Convert.ToInt64(measures.Sum()), 0);
+            Print.White(string.Empty);
         }
 
         private static void PrintMeasureUnit(long ms, double ns)
         {
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write("{0,22:D16} ms ", ms, ns);
+            Console.Write("           {0} ms ", ms.ToString().PadLeft(6));
             if (ns > 0)
             {
-                Console.Write("({0} ns)", ns);
+                Console.Write("({0} ms)", ns);
             }
-            Console.WriteLine();
         }
 
         private static void PrintCaption(string caption)
         {
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write(caption.PadRight(30));
+        }
+
+        public static double Percentile(long[] sequence, double excelPercentile)
+        {
+            Array.Sort(sequence);
+            int N = sequence.Length;
+            double n = (N - 1) * excelPercentile + 1;
+            // Another method: double n = (N + 1) * excelPercentile;
+            if (n == 1d) return sequence[0];
+            else if (n == N) return sequence[N - 1];
+            else
+            {
+                int k = (int)n;
+                double d = n - k;
+                return sequence[k - 1] + d * (sequence[k] - sequence[k - 1]);
+            }
         }
     }
 
