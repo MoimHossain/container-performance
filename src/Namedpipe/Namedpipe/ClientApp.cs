@@ -12,8 +12,6 @@ namespace Namedpipe
 {
     public class ClientApp
     {
-        private static int numClients = 4;
-
         public void Run()
         {
             Print.White("Server IP: ");
@@ -49,7 +47,7 @@ namespace Namedpipe
             NamedPipeClientStream pipeClient =
                     new NamedPipeClientStream(ip, pipeName,
                         PipeDirection.InOut, PipeOptions.None,
-                        TokenImpersonationLevel.None);
+                        TokenImpersonationLevel.Impersonation);
 
             Console.WriteLine("Connecting to server...\n");
             pipeClient.Connect();
